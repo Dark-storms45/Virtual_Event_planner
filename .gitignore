@@ -1,0 +1,70 @@
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+
+# Java specific files
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Log files
+*.log
+logs/
+
+# Build output
+out/
+build/
+dist/
+
+# Node.js related files
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React & Vite specific
+.vite/
+.vitest/
+.vscode/vscode.settings.json
+*.env
+*.env.local
+*.env.*.local
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Maven related files
+.mvn/
+pom.xml.*
+dependency-reduced-pom.xml
+
+# Coverage and test output
+coverage/
+.nyc_output/
+test_output/
+
+# Cache and temp files
+.cache/
+.tmp/
+.temp/
+.eslintcache
+
+# Package lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE-generated folders (optional if using multiple IDEs)
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Ignore generated config files for linting/plugins
+*.tsbuildinfo
+eslint-report.html
