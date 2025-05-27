@@ -30,7 +30,7 @@ A modern web application for planning, hosting, and managing virtual events. Bui
 Copy and paste the following command into your terminal to clone the project:
 
 ```bash
-git clone https://github.com/yourusername/virtual-event-planner.git
+git clone https://github.com/Dark-storms45/virtual-event-planner.git
 cd virtual-event-planner
 ```
 
