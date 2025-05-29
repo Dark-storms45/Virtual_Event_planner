@@ -1,0 +1,90 @@
+:root {
+  --primary-color: #646cff;
+  --secondary-color: #1a1a1a;
+  --background-color: #f9f9f9;
+  --text-color: #ffffff;
+  --font-family: 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0;
+  animation: fadeIn 2s ease-in-out;
+}
+
+h2 {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+  animation: fadeIn 2s ease-in-out 0.5s forwards;
+}
+
+button {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: fadeIn 2s ease-in-out 1s forwards;
+}
+
+button:hover {
+  background-color: #535bf2;
+}
+
+.container {
+  text-align: center;
+  animation: slideIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  button {
+    background-color: #e0e0e0;
+    color: #000000;
+  }
+
+  button:hover {
+    background-color: #d0d0d0;
+  }
+}
