@@ -1,0 +1,21 @@
+Sure, here's the content for the file `src/main/resources/fxml/login.fxml`:
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="400" prefWidth="300" fx:controller="com.eventplanner.controllers.LoginController">
+    <children>
+        <Label text="Login" layoutX="100" layoutY="30" textAlignment="CENTER">
+            <font>
+                <Font size="24" />
+            </font>
+        </Label>
+        <TextField fx:id="usernameField" layoutX="50" layoutY="100" promptText="Username" />
+        <PasswordField fx:id="passwordField" layoutX="50" layoutY="150" promptText="Password" />
+        <Button layoutX="100" layoutY="200" text="Login" onAction="#handleLogin" />
+        <Hyperlink layoutX="100" layoutY="250" text="Don't have an account? Sign up" onAction="#goToSignup" />
+    </children>
+</AnchorPane>

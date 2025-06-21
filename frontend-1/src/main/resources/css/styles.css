@@ -1,0 +1,22 @@
+frontend
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── eventplanner
+│   │   │           ├── App.java
+│   │   │           ├── controllers
+│   │   │           │   ├── LoginController.java
+│   │   │           │   ├── SignupController.java
+│   │   │           │   └── WelcomeController.java
+│   │   │           └── models
+│   │   │               └── User.java
+│   │   └── resources
+│   │       ├── css
+│   │       │   └── styles.css
+│   │       └── fxml
+│   │           ├── login.fxml
+│   │           ├── signup.fxml
+│   │           └── welcome.fxml
+├── pom.xml
+└── README.md
