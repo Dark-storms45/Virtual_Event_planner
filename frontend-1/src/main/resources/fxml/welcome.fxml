@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.eventplanner.controllers.WelcomeController"
+           style="-fx-background-color: linear-gradient(to bottom, #f0f4f8, #ffffff);">
+   <children>
+      <VBox alignment="CENTER" spacing="35.0" styleClass="welcome-container">
+         <children>
+
+            <!-- App Logo & Branding -->
+            <VBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png"/>
+                     </image>
+                  </ImageView>
+                  <Label styleClass="welcome-title" text="Event Planner Pro"
+                         style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                  <Label styleClass="welcome-subtitle" text="Plan Smarter. Celebrate Better."
+                         style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+               </children>
+            </VBox>
+
+            <!-- Features Section -->
+            <VBox alignment="CENTER_LEFT" spacing="12.0" styleClass="welcome-features">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="📅" style="-fx-font-size: 18px;"/>
+                        <Label text="All-in-One Event Planning Dashboard" style="-fx-font-size: 14px;"/>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="💡" style="-fx-font-size: 18px;"/>
+                        <Label text="Smart Budgeting &amp; Vendor Coordination" style="-fx-font-size: 14px;"/>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="📊" style="-fx-font-size: 18px;"/>
+                        <Label text="Real-time Analytics &amp; Reports" style="-fx-font-size: 14px;"/>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" spacing="10.0">
+                     <children>
+                        <Label text="📱" style="-fx-font-size: 18px;"/>
+                        <Label text="Mobile-Friendly &amp; Easy to Use" style="-fx-font-size: 14px;"/>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="10.0" bottom="10.0" left="20.0"/>
+               </padding>
+            </VBox>
+
+            <!-- Call-to-Action Buttons -->
+            <VBox alignment="CENTER" spacing="12.0">
+               <children>
+                  <Button fx:id="loginButton" onAction="#navigateToLogin" prefWidth="260.0"
+                          styleClass="button button-primary"
+                          text="Sign In"/>
+                  <Button fx:id="signupButton" onAction="#navigateToSignup" prefWidth="260.0"
+                          styleClass="button button-secondary"
+                          text="Create Account"/>
+               </children>
+            </VBox>
+
+            <!-- Footer -->
+            <Label text="© 2025 Event Planner Pro. All rights reserved."
+                   style="-fx-text-fill: #95a5a6; -fx-font-size: 11px;"/>
+         </children>
+
+         <padding>
+            <Insets top="40.0" bottom="40.0" left="30.0" right="30.0"/>
+         </padding>
+      </VBox>
+   </children>
+</StackPane>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventplanner.controllers.BudgetController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="header-title" text="Budget Tracker" />
+            <HBox alignment="CENTER_RIGHT" spacing="15.0" styleClass="header-actions" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="notificationsButton" onAction="#handleNotifications" styleClass="button, button-secondary" text="🔔 Notifications" />
+                  <Label fx:id="userNameLabel" styleClass="user-name" text="Welcome, User!" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" styleClass="button, button-secondary" text="Logout" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </HBox>
+   </top>
+   
+   <left>
+      <VBox spacing="10.0" styleClass="sidebar">
+         <children>
+            <Button fx:id="dashboardBtn" onAction="#showDashboard" prefWidth="200.0" styleClass="sidebar-item" text="📊 Dashboard" />
+            <Button fx:id="eventsBtn" onAction="#showEvents" prefWidth="200.0" styleClass="sidebar-item" text="📅 Events" />
+            <Button fx:id="vendorsBtn" onAction="#showVendors" prefWidth="200.0" styleClass="sidebar-item" text="🤝 Vendors" />
+            <Button fx:id="budgetBtn" onAction="#showBudget" prefWidth="200.0" styleClass="sidebar-item, active" text="💰 Budget" />
+            <Button fx:id="reportsBtn" onAction="#showReports" prefWidth="200.0" styleClass="sidebar-item" text="📈 Reports" />
+            <Button fx:id="settingsBtn" onAction="#showSettings" prefWidth="200.0" styleClass="sidebar-item" text="⚙️ Settings" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
+   </left>
+   
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+         <content>
+            <VBox spacing="25.0">
+               <children>
+                  <!-- Header Actions -->
+                  <HBox alignment="CENTER_LEFT" spacing="20.0">
+                     <children>
+                        <Label styleClass="section-title" text="Budget Overview" />
+                        <HBox alignment="CENTER_RIGHT" spacing="15.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <ComboBox fx:id="eventSelectCombo" prefWidth="200.0" promptText="Select Event" styleClass="form-field" />
+                              <Button fx:id="addExpenseBtn" onAction="#showAddExpense" styleClass="button, button-primary" text="+ Add Expense" />
+                              <Button fx:id="exportBudgetBtn" onAction="#handleExportBudget" styleClass="button, button-secondary" text="Export Budget" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Budget Summary Cards -->
+                  <GridPane hgap="20.0" vgap="20.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <VBox alignment="CENTER" styleClass="budget-card" GridPane.columnIndex="0">
+                           <children>
+                              <Label fx:id="totalBudgetLabel" styleClass="budget-value" text="$25,000" />
+                              <Label styleClass="budget-label" text="Total Budget" />
+                              <ProgressBar fx:id="budgetProgressBar" prefWidth="150.0" progress="0.68" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="budget-card" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="spentAmountLabel" styleClass="budget-value, spent" text="$17,200" />
+                              <Label styleClass="budget-label" text="Total Spent" />
+                              <Label fx:id="spentPercentageLabel" styleClass="budget-percentage" text="68.8%" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="budget-card" GridPane.columnIndex="2">
+                           <children>
+                              <Label fx:id="remainingAmountLabel" styleClass="budget-value, remaining" text="$7,800" />
+                              <Label styleClass="budget-label" text="Remaining" />
+                              <Label fx:id="remainingPercentageLabel" styleClass="budget-percentage" text="31.2%" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" styleClass="budget-card" GridPane.columnIndex="3">
+                           <children>
+                              <Label fx:id="avgExpenseLabel" styleClass="budget-value" text="$1,240" />
+                              <Label styleClass="budget-label" text="Avg. Expense" />
+                              <Label fx:id="expenseCountLabel" styleClass="budget-info" text="14 expenses" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+                  
+                  <!-- Budget Breakdown Chart and Categories -->
+                  <HBox spacing="25.0">
+                     <children>
+                        <!-- Pie Chart -->
+                        <VBox spacing="15.0">
+                           <children>
+                              <Label styleClass="section-title" text="Budget Breakdown" />
+                              <PieChart fx:id="budgetPieChart" prefHeight="300.0" prefWidth="400.0" />
+                           </children>
+                        </VBox>
+                        
+                        <!-- Category Breakdown -->
+                        <VBox spacing="15.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label styleClass="section-title" text="Expense Categories" />
+                              <VBox spacing="10.0" styleClass="category-breakdown">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="category-item">
+                                       <children>
+                                          <Label styleClass="category-color, catering" text="●" />
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label styleClass="category-name" text="Catering" />
+                                                      <Label styleClass="category-amount" text="$8,500" />
+                                                   </children>
+                                                </HBox>
+                                                <ProgressBar prefWidth="200.0" progress="0.34" styleClass="category-progress" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="category-item">
+                                       <children>
+                                          <Label styleClass="category-color, venue" text="●" />
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label styleClass="category-name" text="Venue" />
+                                                      <Label styleClass="category-amount" text="$6,200" />
+                                                   </children>
+                                                </HBox>
+                                                <ProgressBar prefWidth="200.0" progress="0.25" styleClass="category-progress" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="category-item">
+                                       <children>
+                                          <Label styleClass="category-color, decoration" text="●" />
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label styleClass="category-name" text="Decoration" />
+                                                      <Label styleClass="category-amount" text="$1,800" />
+                                                   </children>
+                                                </HBox>
+                                                <ProgressBar prefWidth="200.0" progress="0.07" styleClass="category-progress" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="category-item">
+                                       <children>
+                                          <Label styleClass="category-color, entertainment" text="●" />
+                                          <VBox HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                                   <children>
+                                                      <Label styleClass="category-name" text="Entertainment" />
+                                                      <Label styleClass="category-amount" text="$700" />
+                                                   </children>
+                                                </HBox>
+                                                <ProgressBar prefWidth="200.0" progress="0.03" styleClass="category-progress" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Recent Expenses Table -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label styleClass="section-title" text="Recent Expenses" />
+                              <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <TextField fx:id="expenseSearchField" prefWidth="200.0" promptText="Search expenses..." styleClass="form-field" />
+                                    <Button fx:id="filterExpensesBtn" onAction="#handleFilterExpenses" styleClass="button, button-secondary" text="Filter" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        
+                        <TableView fx:id="expensesTable" prefHeight="300.0" styleClass="table">
+                           <columns>
+                              <TableColumn fx:id="expenseDateColumn" prefWidth="100.0" text="Date" />
+                              <TableColumn fx:id="expenseDescriptionColumn" prefWidth="250.0" text="Description" />
+                              <TableColumn fx:id="expenseCategoryColumn" prefWidth="120.0" text="Category" />
+                              <TableColumn fx:id="expenseVendorColumn" prefWidth="150.0" text="Vendor" />
+                              <TableColumn fx:id="expenseAmountColumn" prefWidth="100.0" text="Amount" />
+                              <TableColumn fx:id="expenseStatusColumn" prefWidth="100.0" text="Status" />
+                              <TableColumn fx:id="expenseActionsColumn" prefWidth="120.0" text="Actions" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Budget Alerts -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Budget Alerts" />
+                        <VBox fx:id="alertsContainer" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="alert-item, warning">
+                                 <children>
+                                    <Label styleClass="alert-icon" text="⚠️" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="alert-title" text="Budget Warning" />
+                                          <Label styleClass="alert-message" text="Catering expenses are approaching 35% of total budget" />
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="dismissAlert1" onAction="#handleDismissAlert" styleClass="button, button-link" text="Dismiss" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="alert-item, info">
+                                 <children>
+                                    <Label styleClass="alert-icon" text="ℹ️" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="alert-title" text="Budget Tip" />
+                                          <Label styleClass="alert-message" text="Consider negotiating with vendors to reduce venue costs" />
+                                       </children>
+                                    </VBox>
+                                    <Button fx:id="dismissAlert2" onAction="#handleDismissAlert" styleClass="button, button-link" text="Dismiss" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

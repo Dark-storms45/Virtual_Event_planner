@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventplanner.controllers.DashboardController">
+   <top>
+      <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="header">
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logo.png" />
+               </image>
+            </ImageView>
+            <Label styleClass="header-title" text="Dashboard" />
+            <HBox alignment="CENTER_RIGHT" spacing="15.0" styleClass="header-actions" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="notificationsButton" onAction="#handleNotifications" styleClass="button button-secondary" text="🔔 Notifications" />
+                  <Label fx:id="userNameLabel" styleClass="user-name" text="Welcome, User!" />
+                  <Button fx:id="logoutButton" onAction="#handleLogout" styleClass="button button-secondary" text="Logout" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="15.0" left="20.0" right="20.0" top="15.0" />
+         </padding>
+      </HBox>
+   </top>
+   
+   <left>
+      <VBox spacing="10.0" styleClass="sidebar">
+         <children>
+            <Button fx:id="dashboardBtn" onAction="#showDashboard" prefWidth="200.0" styleClass="sidebar-item active" text="📊 Dashboard" />
+            <Button fx:id="eventsBtn" onAction="#showEvents" prefWidth="200.0" styleClass="sidebar-item" text="📅 Events" />
+            <Button fx:id="vendorsBtn" onAction="#showVendors" prefWidth="200.0" styleClass="sidebar-item" text="🤝 Vendors" />
+            <Button fx:id="budgetBtn" onAction="#showBudget" prefWidth="200.0" styleClass="sidebar-item" text="💰 Budget" />
+            <Button fx:id="reportsBtn" onAction="#showReports" prefWidth="200.0" styleClass="sidebar-item" text="📈 Reports" />
+            <Button fx:id="settingsBtn" onAction="#showSettings" prefWidth="200.0" styleClass="sidebar-item" text="⚙️ Settings" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+         </padding>
+      </VBox>
+   </left>
+   
+   <center>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+         <content>
+            <VBox spacing="25.0">
+               <children>
+                  <!-- Quick Stats Section -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Quick Overview" />
+                        <GridPane hgap="20.0" vgap="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints />
+                           </rowConstraints>
+                           <children>
+                              <VBox alignment="CENTER" styleClass="dashboard-metric" GridPane.columnIndex="0">
+                                 <children>
+                                    <Label fx:id="totalEventsLabel" styleClass="value" text="12" />
+                                    <Label styleClass="label" text="Total Events" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" styleClass="dashboard-metric" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label fx:id="activeEventsLabel" styleClass="value" text="3" />
+                                    <Label styleClass="label" text="Active Events" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" styleClass="dashboard-metric" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label fx:id="totalBudgetLabel" styleClass="value" text="$25K" />
+                                    <Label styleClass="label" text="Total Budget" />
+                                 </children>
+                              </VBox>
+                              <VBox alignment="CENTER" styleClass="dashboard-metric" GridPane.columnIndex="3">
+                                 <children>
+                                    <Label fx:id="vendorsLabel" styleClass="value" text="18" />
+                                    <Label styleClass="label" text="Vendors" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Recent Events Section -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label styleClass="section-title" text="Recent Events" />
+                              <Button fx:id="viewAllEventsBtn" onAction="#showEvents" styleClass="button button-link" text="View All" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="recentEventsTable" prefHeight="200.0" styleClass="table">
+                           <columns>
+                              <TableColumn fx:id="eventNameColumn" prefWidth="200.0" text="Event Name" />
+                              <TableColumn fx:id="eventDateColumn" prefWidth="120.0" text="Date" />
+                              <TableColumn fx:id="eventStatusColumn" prefWidth="100.0" text="Status" />
+                              <TableColumn fx:id="eventBudgetColumn" prefWidth="100.0" text="Budget" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Upcoming Tasks Section -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label styleClass="section-title" text="Upcoming Tasks" />
+                        <VBox fx:id="tasksContainer" spacing="10.0" styleClass="tasks-container">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="task-item">
+                                 <children>
+                                    <Label styleClass="task-priority high" text="HIGH" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="task-title" text="Finalize venue booking for Summer Gala" />
+                                          <Label styleClass="task-date" text="Due: Tomorrow" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="task-item">
+                                 <children>
+                                    <Label styleClass="task-priority medium" text="MED" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="task-title" text="Review catering proposals" />
+                                          <Label styleClass="task-date" text="Due: This Week" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" spacing="15.0" styleClass="task-item">
+                                 <children>
+                                    <Label styleClass="task-priority low" text="LOW" />
+                                    <VBox HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="task-title" text="Send invitations for networking event" />
+                                          <Label styleClass="task-date" text="Due: Next Week" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

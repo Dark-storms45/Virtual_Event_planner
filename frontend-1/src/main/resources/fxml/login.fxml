@@ -1,21 +1,86 @@
-Sure, here's the content for the file `src/main/resources/fxml/login.fxml`:
-
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" prefHeight="400" prefWidth="300" fx:controller="com.eventplanner.controllers.LoginController">
-    <children>
-        <Label text="Login" layoutX="100" layoutY="30" textAlignment="CENTER">
-            <font>
-                <Font size="24" />
-            </font>
-        </Label>
-        <TextField fx:id="usernameField" layoutX="50" layoutY="100" promptText="Username" />
-        <PasswordField fx:id="passwordField" layoutX="50" layoutY="150" promptText="Password" />
-        <Button layoutX="100" layoutY="200" text="Login" onAction="#handleLogin" />
-        <Hyperlink layoutX="100" layoutY="250" text="Don't have an account? Sign up" onAction="#goToSignup" />
-    </children>
-</AnchorPane>
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eventplanner.controllers.LoginController">
+   <children>
+      <VBox alignment="CENTER" maxWidth="400.0" spacing="30.0" styleClass="login-container">
+         <children>
+            <VBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="login-title" text="Welcome Back" />
+                  <Label styleClass="login-subtitle" text="Sign in to your account" />
+               </children>
+            </VBox>
+            
+            <VBox spacing="20.0" styleClass="form">
+               <children>
+                  <VBox spacing="8.0" styleClass="form-group">
+                     <children>
+                        <Label styleClass="form-label" text="Email Address" />
+                        <TextField fx:id="emailField" promptText="Enter your email" styleClass="form-input" />
+                        <Label fx:id="emailError" styleClass="form-error-text" visible="false" />
+                     </children>
+                  </VBox>
+                  
+                  <VBox spacing="8.0" styleClass="form-group">
+                     <children>
+                        <Label styleClass="form-label" text="Password" />
+                        <PasswordField fx:id="passwordField" promptText="Enter your password" styleClass="form-input" />
+                        <Label fx:id="passwordError" styleClass="form-error-text" visible="false" />
+                     </children>
+                  </VBox>
+                  
+                  <HBox alignment="CENTER_RIGHT">
+                     <children>
+                        <Hyperlink fx:id="forgotPasswordLink" onAction="#handleForgotPassword" text="Forgot Password?" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            
+            <VBox alignment="CENTER" spacing="15.0">
+               <children>
+                  <Button fx:id="loginButton" onAction="#handleLogin" prefWidth="350.0" styleClass="button, button-primary, button-large" text="Sign In" />
+                  
+                  <ProgressIndicator fx:id="progressIndicator" visible="false" maxWidth="40.0" maxHeight="40.0" />
+                  
+                  <Label fx:id="errorMessage" styleClass="form-error-text" visible="false" />
+               </children>
+            </VBox>
+            
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label text="Don't have an account?" />
+                  <Hyperlink fx:id="signupLink" onAction="#handleSignup" text="Sign up here" />
+               </children>
+            </HBox>
+            
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Button fx:id="backButton" onAction="#handleBack" styleClass="button, button-secondary" text="← Back to Welcome" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>
